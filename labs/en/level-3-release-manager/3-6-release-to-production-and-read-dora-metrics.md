@@ -149,10 +149,13 @@ You have shipped. The question a release manager gets asked next is "how are we 
 deserves a better answer than a feeling.
 
 Open the **DevOps Pipeline** panel, click the gear **(1)** at the top right, and choose
-**DORA metrics** **(2)**. The menu holds three entries and you used the other two in [Lab 3.1](3-1-configure-the-pipeline-up-to-production.md):
-**Pipeline Settings** and **Add/Configure Org**.
+**Generate DORA Metrics** **(2)**. You used **Configure Pipeline Settings** and **Add or Reconnect a Major Org** of the same
+menu in [Lab 3.1](3-1-configure-the-pipeline-up-to-production.md). **Configure Org Initialization** is for the
+projects whose contributors get a new scratch org or sandbox: it sets what each new org receives.
+Helios gives its contributors the scratch orgs Set up my training environment creates, so the course
+does not use it.
 
-![The gear menu of the DevOps Pipeline panel, open on DORA metrics](../../_assets/annotated/vscode/pipeline-settings-menu-level3--dora.png)
+![The gear menu of the DevOps Pipeline panel, open on Generate DORA Metrics](../../_assets/annotated/vscode/pipeline-settings-menu-level3--dora.png)
 
 A **DORA metrics** tab opens and says, for a few seconds, that it is reading deployment jobs and
 Pull Requests from GitHub. That sentence is the whole design. Nothing is asked of any org, so there

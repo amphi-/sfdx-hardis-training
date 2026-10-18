@@ -280,7 +280,7 @@ const overlay = {
         value: o.alias,
         description: usernameFor(o.alias)
       })),
-    // What Add/Configure Org (hardis:project:configure:auth) is answered with in
+    // What Add or Reconnect a Major Org (hardis:project:configure:auth) is answered with in
     // Lab 3.1: the preprod branch and its Developer Edition org, among the four
     // major branches a Level 3 fork has. integration and uat keep their auth URL
     // secrets in the lab, so preprod is the first org it walks through

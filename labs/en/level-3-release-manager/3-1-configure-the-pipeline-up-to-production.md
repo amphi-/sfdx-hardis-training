@@ -1,7 +1,7 @@
 ---
 id: lab-3-1
 title: "Lab 3.1 - Configure the CI/CD pipeline up to production"
-description: "Extend a two-stage Salesforce pipeline to production: branches, protections, and preprod and production authenticated with JWT by Add/Configure Org."
+description: "Extend a two-stage Salesforce pipeline to production: branches, protections, and each org authenticated with JWT by Add or Reconnect a Major Org."
 level: 3
 lab: 1
 lang: en
@@ -245,21 +245,21 @@ In the **DevOps Pipeline** panel, under **Project Contribution Workflow** **(1)*
 The command creates `features/US-050-pipeline-up-to-production` from `integration` and checks it
 out. Everything the next steps write lands there.
 
-### 5. Configure preprod and its org: Add/Configure Org
+### 5. Configure preprod and its org: Add or Reconnect a Major Org
 
 Now the orgs. One command does it all for a branch: it writes the branch configuration, the org it
 deploys to and the branch it merges into, creates the credential the CI logs in with, and deploys the
 External Client App into the org. You run it once per branch, starting with `preprod`.
 
 In the **DevOps Pipeline** panel, click the gear **(1)** at the top right and choose
-**Add/Configure Org** **(2)**.
+**Add or Reconnect a Major Org** **(2)**.
 
-![The gear menu of the DevOps Pipeline panel, open on Add/Configure Org](../../_assets/annotated/vscode/pipeline-settings-menu--add-org.png)
+![The gear menu of the DevOps Pipeline panel, open on Add or Reconnect a Major Org](../../_assets/annotated/vscode/pipeline-settings-menu--add-org.png)
 
 The command runs in a panel and asks one question at a time **(1)**, with the answers to click below
 it **(2)**. Here it is at the second question, with `helios-preprod` already chosen.
 
-![The Add/Configure Org command asking which git branch to configure](../../_assets/annotated/vscode/configure-auth-branch--branch-question.png)
+![The Add or Reconnect a Major Org command asking which git branch to configure](../../_assets/annotated/vscode/configure-auth-branch--branch-question.png)
 
 It asks a dozen questions, in this order:
 
@@ -298,7 +298,7 @@ Just above question 9 the panel prints the two values the CI needs **(2)**, each
 Nothing prints them again, so do not close the panel. The panel keeps every question you answered
 **(1)**, and the files it wrote are in the reports bar at the bottom **(3)**.
 
-![The Add/Configure Org command printing the two secrets and waiting for them to be stored](../../_assets/annotated/vscode/configure-auth-variables--secrets.png)
+![The Add or Reconnect a Major Org command printing the two secrets and waiting for them to be stored](../../_assets/annotated/vscode/configure-auth-variables--secrets.png)
 
 In your fork (`github.com/my-username/sfdx-hardis-training`), open **Settings > Secrets and
 variables > Actions (1)**, then click **New repository secret (2)**:
@@ -371,7 +371,7 @@ consumer`, an accurate message that reads like a bug.
 
 ### 8. The same for main
 
-Same gear, **Add/Configure Org**, once more, for production:
+Same gear, **Add or Reconnect a Major Org**, once more, for production:
 
 | Branch | Org           | Base URL answer                                                            | Merges into  | Secrets                                       |
 |--------|---------------|----------------------------------------------------------------------------|--------------|-----------------------------------------------|
@@ -388,7 +388,7 @@ Four secrets, two External Client Apps, two keys. Tedious once, then never again
 
 **Then tell `uat` where its work goes next.** The command wrote that `preprod` merges into
 `main`. Nothing has said yet that `uat` merges into `preprod`: until now `uat` was the end of the
-pipeline, and its branch file says so. In the **DevOps Pipeline** panel, gear menu, **Pipeline
+pipeline, and its branch file says so. In the **DevOps Pipeline** panel, gear menu, **Configure Pipeline
 Settings**, switch the scope selector at the top right to **Branch: uat** **(1)**, open the
 **Deployment** tab **(2)** and click **Edit**. In **Merge target branches** **(3)**, type
 `preprod`, then **Save** **(4)**, which took the place of **Edit**.
@@ -402,7 +402,7 @@ chip to click there. Step 11 publishes it with the rest.
 
 Contributors choose where a User Story goes from a list, and `preprod` is not in it yet.
 
-Open the **DevOps Pipeline** panel, the gear menu, **Pipeline Settings**. The page title reads
+Open the **DevOps Pipeline** panel, the gear menu, **Configure Pipeline Settings**. The page title reads
 **Global Pipeline Settings**, and the scope selector **(1)** reads **Global Settings**.
 
 ![The Global Pipeline Settings screen, with the scope selector, the Edit button and the User Stories tab](../../_assets/annotated/vscode/pipeline-config--target-branches.png)
@@ -597,7 +597,7 @@ folder.
 `sf hardis:project:create` would have generated the skeleton of a new project: the workflows for
 every git provider, `.mega-linter.yml`, `projectName`, `developmentBranch` and `autoCleanTypes`. It
 writes no `config/branches/` file and asks for no org but the Dev Hub: the branch files are
-Add/Configure Org's job, as above. The command that takes an existing org with no repository at all
+Add or Reconnect a Major Org's job, as above. The command that takes an existing org with no repository at all
 and produces the first commit is `sf hardis:org:retrieve:sources:dx`, the real starting point of
 most projects.
 
@@ -638,7 +638,7 @@ the first time you click one.
 
 ## If it goes wrong
 
-**preprod is not in the branch list of Add/Configure Org.**
+**preprod is not in the branch list of Add or Reconnect a Major Org.**
 VS Code has not fetched it. **Source Control** panel, **...** menu, **Pull, Push** > **Fetch**, then
 run the command again.
 
@@ -647,7 +647,7 @@ It happens when a scratch org expired and **Set up my training environment** bui
 the same alias: the command lists the orgs from a cache, and the cache still holds the old one.
 Picking it makes the command stop straight after "Selected Org", with none of the questions asked.
 The last answer of the list is the way out: **😱 I already authenticated my org but I don't see it !**
-clears that cache. Then run **Add/Configure Org** again and the list is right.
+clears that cache. Then run **Add or Reconnect a Major Org** again and the list is right.
 
 **The preprod column appears with no org.**
 The branch file was written for another branch name. Check `config/branches/` for a typo: the file
@@ -666,17 +666,17 @@ that failed.
 
 **`client identifier invalid`.**
 The External Client App behind that consumer key was never created: the command stopped after it
-printed the two values. Run **Add/Configure Org** again for that branch, store the two new values,
+printed the two values. Run **Add or Reconnect a Major Org** again for that branch, store the two new values,
 and publish again.
 
-**Add/Configure Org stops asking whether you deleted the External Client App.**
+**Add or Reconnect a Major Org stops asking whether you deleted the External Client App.**
 You are running it a second time for that branch, and the app it deploys is already in the org, so
 it asks you to remove the old one first: *External Client App named `sfdxhardis<branch>` already
 exists ... Have you deleted it?* In the org, **Setup > External Client App Manager**, delete that
 app, then answer yes. It is the normal path whenever an entry above sends you back through
-**Add/Configure Org**.
+**Add or Reconnect a Major Org**.
 
-**Add/Configure Org stops straight after "Selected Org", with none of the questions asked.**
+**Add or Reconnect a Major Org stops straight after "Selected Org", with none of the questions asked.**
 The org list offered a `helios-` org that no longer exists, usually because a scratch org was
 rebuilt under the same alias. See the entry above: the last answer of the list,
 **I already authenticated my org but I don't see it !**, clears that cache.

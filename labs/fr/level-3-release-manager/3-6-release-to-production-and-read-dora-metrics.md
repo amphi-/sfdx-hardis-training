@@ -5,7 +5,7 @@ description: "Livrez via preprod vers votre org de production, vérifiez-la, pui
 level: 3
 lab: 6
 lang: fr
-source_rev: "c931933f43af0a94ecc08526c8d66545da0ac78d"
+source_rev: "c374e6b1762cb1752f0a29c2b735eb1f867a7041"
 screenshots:
   - annotated/vscode/orgs-manager
   - annotated/vscode/pipeline-settings-menu-level3--dora
@@ -154,10 +154,13 @@ Vous avez livré. La question qu'on pose ensuite à un release manager est "où 
 mérite mieux qu'une impression.
 
 Ouvrez le panneau **DevOps Pipeline**, cliquez sur l'engrenage **(1)** en haut à droite, et
-choisissez **DORA metrics** **(2)**. Le menu contient trois entrées et vous avez utilisé les deux
-autres au [Lab 3.1](3-1-configure-the-pipeline-up-to-production.md) : **Pipeline Settings** et **Add/Configure Org**.
+choisissez **Generate DORA Metrics** **(2)**. Vous avez utilisé **Configure Pipeline Settings** et **Add or Reconnect a
+Major Org** du même menu au [Lab 3.1](3-1-configure-the-pipeline-up-to-production.md).
+**Configure Org Initialization** sert aux projets dont les contributeurs reçoivent une nouvelle scratch org ou
+sandbox : il définit ce que reçoit chaque nouvelle org. Helios donne à ses contributeurs les scratch
+orgs créées par Set up my training environment, le cours ne l'utilise donc pas.
 
-![Le menu engrenage du panneau DevOps Pipeline, ouvert sur DORA metrics](../../_assets/annotated/vscode/pipeline-settings-menu-level3--dora.png)
+![Le menu engrenage du panneau DevOps Pipeline, ouvert sur Generate DORA Metrics](../../_assets/annotated/vscode/pipeline-settings-menu-level3--dora.png)
 
 Un onglet **DORA metrics** s'ouvre et dit, pendant quelques secondes, qu'il lit les jobs de
 déploiement et les Pull Requests depuis GitHub. Cette phrase est toute la conception. Rien n'est

@@ -5,7 +5,7 @@ description: "Lisez un log de déploiement sfdx-hardis, trouvez ce qu'un joker .
 level: 3
 lab: 3
 lang: fr
-source_rev: "a379d19cd2494f395f43a1379eb6a8cc33133b8a"
+source_rev: "7b800ccc2cf29674faefdc3161ed9cbd476f25e4"
 screenshots:
   - annotated/vscode/pipeline-config-deployment--delta
   - annotated/vscode/orgs-manager
@@ -107,7 +107,7 @@ l'org doit vraiment être au commit où la pipeline la croit.
 !!! note "Ce projet a le delta désactivé, exprès"
     `useDeltaDeployment` est absent de `config/.sfdx-hardis.yml` : chaque déploiement de ce cours
     envoie donc le package complet. Lisez-le vous-même : **DevOps Pipeline**, menu engrenage,
-    **Pipeline Settings**, portée **Global Settings** **(1)**, onglet **Deployment** **(2)**.
+    **Configure Pipeline Settings**, portée **Global Settings** **(1)**, onglet **Deployment** **(2)**.
     **Use Delta Deployment** **(3)** affiche **Disabled**.
 
     L'application Helios fait maintenant une soixantaine de composants : un déploiement complet coûte une
