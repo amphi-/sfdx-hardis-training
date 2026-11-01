@@ -38,6 +38,15 @@
         <label>Raise Crew To Thre</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+            <targetReference>Crew_Over_Cap</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>US-018: the crew never exceeds the cap the planner set on the installation.</description>
+        <name>Bring_Crew_Back_To_Cap</name>
+        <label>Bring Crew Back To Cap</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
         <assignmentItems>
             <assignToReference>$Record.Crew_Size__c</assignToReference>
             <operator>Assign</operator>
@@ -48,6 +57,9 @@
         <connector>
             <targetReference>Crew_Over_Cap</targetReference>
         </connector>
+                <elementReference>$Record.Crew_Capacity_Cap__c</elementReference>
+            </value>
+        </assignmentItems>
     </assignments>
     <decisions>
         <description>Is the crew larger than the cap this installation allows?</description>
@@ -55,6 +67,8 @@
         <label>Crew Over Cap</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
         <defaultConnectorLabel>Within the cap</defaultConnectorLabel>
         <rules>
             <name>Too_Large</name>
