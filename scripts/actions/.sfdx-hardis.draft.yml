@@ -1,9 +1,0 @@
-commandsPostDeploy:
-  - id: d7d4911d-08e8-4d60-ab02-94ff1b27569c
-    label: Import Handover Item Data
-    type: data
-    command: ""
-    parameters:
-      sfdmuProject: Handover Item reference data
-    runOnlyOnceByOrg: true
-    context: process-deployment-only
