@@ -74,10 +74,6 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>orgenv</members>
-        <name>LightningExperienceTheme</name>
-    </types>
-    <types>
         <members>Crew_Capacity__c.All</members>
         <members>Installation__c.All_Installations</members>
         <members>Installation__c.Open_Installations</members>
@@ -91,7 +87,6 @@
     </types>
     <types>
         <members>Admin</members>
-        <members>B2B Reordering Portal Buyer Profile</members>
         <members>Helios Crew</members>
         <name>Profile</name>
     </types>
