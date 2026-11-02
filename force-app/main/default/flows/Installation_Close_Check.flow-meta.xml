@@ -13,12 +13,37 @@
             <isFieldError>false</isFieldError>
         </customErrorMessages>
     </customErrors>
+    <customErrors>
+        <description>The receive of related handover items failed.</description>
+        <name>Unable_to_get_records</name>
+        <label>Unable to get records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>The receive of related handover items failed.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <description>Refuses to close an installation that has open handover items.</description>
+        <name>Unfinished_Handover_Item_found</name>
+        <label>Unfinished Handover Item found</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>Finish all handover items before closing the installation.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <decisions>
         <description>Was the installation ever given an install date?</description>
         <name>No_Install_Date</name>
         <label>No Install Date</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_unfinished_handover_items</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Install date set</defaultConnectorLabel>
         <rules>
             <name>Date_Missing</name>
@@ -34,6 +59,29 @@
                 <targetReference>Install_Date_Missing</targetReference>
             </connector>
             <label>Date missing</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>checks if installations have unfinished handover items.</description>
+        <name>Unfinished_work_found</name>
+        <label>Unfinished work found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>everything done</defaultConnectorLabel>
+        <rules>
+            <name>unfinished_business</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_unfinished_handover_items</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Unfinished_Handover_Item_found</targetReference>
+            </connector>
+            <label>unfinished business</label>
         </rules>
     </decisions>
     <description>An installation cannot be closed without an install date.</description>
@@ -53,6 +101,31 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Gets unfinished handover items.</description>
+        <name>Get_unfinished_handover_items</name>
+        <label>Get unfinished handover items</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Unfinished_work_found</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Unable_to_get_records</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Is_Done__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Handover_Item__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
