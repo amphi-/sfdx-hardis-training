@@ -14,6 +14,7 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account.Testfeld__c</members>
         <members>Crew_Capacity__c.Crew_Type__c</members>
         <members>Crew_Capacity__c.External_Id__c</members>
         <members>Crew_Capacity__c.Panels_Per_Day__c</members>
